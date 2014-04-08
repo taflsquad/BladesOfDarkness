@@ -14,7 +14,9 @@ public class ElFrame extends JFrame implements Runnable {
 	
 	public static final int BLOCKSIZE = 64;
 	private Map map;
+	
 	private Dimension leMapSize;
+	
 	
 	public ElFrame(){
 		setTitle("Blades of Darkness");
@@ -31,6 +33,8 @@ public class ElFrame extends JFrame implements Runnable {
 		//FILL
 		map = new Map();
 		add(map);
+		
+		
 		//FILL
 		
 		setSize(leMapSize);
