@@ -1,5 +1,17 @@
 package main;
 
+/**
+ *  Design inspired by silveira
+ *  
+ *  @author bitNiKC
+ */
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 enum Tile {
@@ -21,6 +33,73 @@ enum Tile {
 		TED13, TED14, TED15, TED16, BIGTREE10, BIGTREE11, BIGTREE12, SMALLTREE05, SMALLTREE06, MIDTREE07, MIDTREE08, BOULDERBRIGHT2, BIGBOULDER, STATUE2, WELL3, WELL4;
 }
 
+enum DefaultMap {
+	JOE, PHIL, MAX, TED, BIGTREE, MIDTREE, SMALLTREE, STATUE, WELL;
+}
+
 public class Canvas extends JPanel{
+    private static final int tW = 32; // tile width
+    private static final int tH = 32; // tile height
+    private static final Tile joe[][] =
+    {{Tile.JOE01, Tile.JOE02, Tile.JOE03, Tile.JOE04, Tile.JOE05, Tile.JOE06},
+   	 {Tile.JOE07, Tile.JOE08, Tile.JOE09, Tile.JOE10, Tile.JOE11, Tile.JOE12},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
+	 {Tile.JOE31, Tile.JOE32, Tile.JOE33, Tile.JOE34, Tile.JOE35, Tile.JOE36},
+	 {Tile.JOE37, Tile.JOE38, Tile.JOE39, Tile.JOE40, Tile.JOE41, Tile.JOE42}};
+    private static Tile map[][] = null;
+    
+    private Image tileset;
+    
+    private Canvas() {
+    	tileset = Toolkit.getDefaultToolkit().getImage("res/tiles.png");
+    }
+    
+    public Canvas(DefaultMap dm) {
+    	this();
+    	map = predeterminedMap(dm);
+    }
+    
+    public int getMapWidth() {
+    	return tH*map[0].length;
+    }
+    
+    public int getMapHeight() {
+    	return tW*map.length;
+    }
+    
+    protected Tile[][] predeterminedMap(DefaultMap dm) {
+		switch (dm) {
+		case JOE:
+			return joe;
+
+		default:
+			JOptionPane.showMessageDialog(getParent(), "No such map");
+			return null;
+		}
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		int mW = map[0].length;	// map width
+		int mH = map.length; 	// map height
+		super.paintComponent(g);
+		//g.setColor(Color.magenta);
+		//g.fillRect(0, 0, getWidth(), getHeight());
+		
+		for (int i=0; i<mW; i++)
+			for (int j=0; j<mH; j++)
+				drawTile(g, map[j][i], i*tW, j*tH);
+	}
 	
+	protected void drawTile(Graphics g, Tile t, int x, int y) {
+		// map Tile from the tileset
+		int mx = t.ordinal()%16;
+		int my = t.ordinal()/16;
+		g.drawImage(tileset, x, y, x+tW, y+tH,
+				mx*tW, my*tH, mx*tW+tW, my*tH+tH, this);
+	}
+    
+    
 }
