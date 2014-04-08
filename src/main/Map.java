@@ -32,9 +32,7 @@ public class Map extends JPanel {
 		for (int row = 0; row < (mapSizeY*blockSize); row+=blockSize){
 			for (int col = 0; col < (mapSizeX*blockSize);col+=blockSize){
 				g.drawRect(row, col, blockSize, blockSize);
-				
 			}
-			
 		}
 		
 		

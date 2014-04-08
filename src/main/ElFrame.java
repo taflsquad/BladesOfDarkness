@@ -12,15 +12,15 @@ public class ElFrame extends JFrame implements Runnable {
 
 	private boolean running;
 	
-	public static final int BLOCKSIZE = 32;
+	public static final int BLOCKSIZE = 64;
 	private Map map;
 	private Dimension leMapSize;
 	
 	public ElFrame(){
 		setTitle("Blades of Darkness");
-		setResizable(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		leMapSize  = new Dimension(BLOCKSIZE*10,BLOCKSIZE*10);	
+		leMapSize  = new Dimension(BLOCKSIZE*10+7,BLOCKSIZE*10+30);	
 		initialize();
 		
 		
