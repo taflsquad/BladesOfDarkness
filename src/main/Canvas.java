@@ -31,10 +31,11 @@ enum Tile {
 		TED05, TED06, TED07, TED08, BIGTREE04, BIGTREE05, BIGTREE06, SMALLTREE01, SMALLTREE02, MIDTREE03, MIDTREE04, BOULDERL2, BOULDERDARK1, BOULDERR2, CAVE07, CAVE08,
 		TED09, TED10, TED11, TED12, BIGTREE07, BIGTREE08, BIGTREE09, SMALLTREE03, SMALLTREE04, MIDTREE05, MIDTREE06, BOULDERBRIGHT1, BOULDERDARK2, STATUE1, WELL1, WELL2,
 		TED13, TED14, TED15, TED16, BIGTREE10, BIGTREE11, BIGTREE12, SMALLTREE05, SMALLTREE06, MIDTREE07, MIDTREE08, BOULDERBRIGHT2, BIGBOULDER, STATUE2, WELL3, WELL4;
+		
 }
 
 enum DefaultMap {
-	JOE, PHIL, MAX, TED, BIGTREE, MIDTREE, SMALLTREE, STATUE, WELL;
+	JOE, JOE_LARGE, BLADES_OF_DARKNESS;
 }
 
 public class Canvas extends JPanel{
@@ -43,6 +44,36 @@ public class Canvas extends JPanel{
     private static final Tile joe[][] =
     {{Tile.JOE01, Tile.JOE02, Tile.JOE03, Tile.JOE04, Tile.JOE05, Tile.JOE06},
    	 {Tile.JOE07, Tile.JOE08, Tile.JOE09, Tile.JOE10, Tile.JOE11, Tile.JOE12},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
+	 {Tile.JOE31, Tile.JOE32, Tile.JOE33, Tile.JOE34, Tile.JOE35, Tile.JOE36},
+	 {Tile.JOE37, Tile.JOE38, Tile.JOE39, Tile.JOE40, Tile.JOE41, Tile.JOE42}};
+    private static final Tile bladesOfDarkness[][] =
+    {{Tile.JOE01, Tile.JOE02, Tile.JOE03, Tile.JOE04, Tile.JOE03, Tile.JOE04, Tile.JOE03, Tile.JOE04, Tile.JOE03, Tile.JOE04, Tile.JOE03, Tile.JOE04, Tile.JOE05, Tile.JOE06},
+   	 {Tile.JOE07, Tile.JOE08, Tile.JOE09, Tile.JOE10, Tile.JOE09, Tile.JOE10, Tile.JOE09, Tile.JOE10, Tile.JOE09, Tile.JOE10, Tile.JOE09, Tile.JOE10, Tile.JOE11, Tile.JOE12},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE27, Tile.JOE28, Tile.JOE27, Tile.JOE28, Tile.JOE27, Tile.JOE28, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
+	 {Tile.JOE31, Tile.JOE32, Tile.JOE33, Tile.JOE34, Tile.JOE33, Tile.JOE34, Tile.JOE33, Tile.JOE34, Tile.JOE33, Tile.JOE34, Tile.JOE33, Tile.JOE34, Tile.JOE35, Tile.JOE36},
+	 {Tile.JOE37, Tile.JOE38, Tile.JOE39, Tile.JOE40, Tile.JOE39, Tile.JOE40, Tile.JOE39, Tile.JOE40, Tile.JOE39, Tile.JOE40, Tile.JOE39, Tile.JOE40, Tile.JOE41, Tile.JOE42}};
+    private static final Tile joeLarge[][] =
+    {{Tile.JOE01, Tile.JOE02, Tile.JOE03, Tile.JOE04, Tile.JOE05, Tile.JOE06},
+   	 {Tile.JOE07, Tile.JOE08, Tile.JOE09, Tile.JOE10, Tile.JOE11, Tile.JOE12},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
+	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
+	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
+	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
 	 {Tile.JOE13, Tile.JOE14, Tile.JOE15, Tile.JOE16, Tile.JOE17, Tile.JOE18},
 	 {Tile.JOE19, Tile.JOE20, Tile.JOE21, Tile.JOE22, Tile.JOE23, Tile.JOE24},
 	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
@@ -73,6 +104,13 @@ public class Canvas extends JPanel{
 		switch (dm) {
 		case JOE:
 			return joe;
+
+		case JOE_LARGE:
+			return joeLarge;
+
+
+		case BLADES_OF_DARKNESS:
+			return bladesOfDarkness;
 
 		default:
 			JOptionPane.showMessageDialog(getParent(), "No such map");
