@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 public class Map extends JPanel {
 	private int mapSizeX, mapSizeY, blockSize;
 	private int mapArray[][];
+	private Player player;
+	private KeyListner listner;
 	
 	public Map() {
 		mapSizeX = 10;
@@ -16,6 +18,12 @@ public class Map extends JPanel {
 		blockSize = ElFrame.BLOCKSIZE;
 		mapArray = new int [mapSizeY][mapSizeX];
 		defineMap();
+		player = new Player(10,10);
+		listner = new KeyListner(player);
+		add(player);
+		addKeyListener(listner);
+		
+		
 	}
 	
 	public void draw(){
