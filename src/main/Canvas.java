@@ -35,7 +35,7 @@ enum Tile {
 }
 
 enum DefaultMap {
-	JOE, JOE_LARGE, BLADES_OF_DARKNESS;
+	JOE, JOE_LARGE, BLADES_OF_DARKNESS, LITTLE_TREE;
 }
 
 public class Canvas extends JPanel{
@@ -79,6 +79,11 @@ public class Canvas extends JPanel{
 	 {Tile.JOE25, Tile.JOE26, Tile.JOE27, Tile.JOE28, Tile.JOE29, Tile.JOE30},
 	 {Tile.JOE31, Tile.JOE32, Tile.JOE33, Tile.JOE34, Tile.JOE35, Tile.JOE36},
 	 {Tile.JOE37, Tile.JOE38, Tile.JOE39, Tile.JOE40, Tile.JOE41, Tile.JOE42}};
+    private static final Tile littleTree[][] = 
+        {{Tile.SMALLTREE01, Tile.SMALLTREE02},
+        {Tile.SMALLTREE03, Tile.SMALLTREE04},
+        {Tile.SMALLTREE05, Tile.SMALLTREE06}};
+    		
     private static Tile map[][] = null;
     
     private Image tileset;
@@ -108,9 +113,11 @@ public class Canvas extends JPanel{
 		case JOE_LARGE:
 			return joeLarge;
 
-
 		case BLADES_OF_DARKNESS:
 			return bladesOfDarkness;
+
+		case LITTLE_TREE:
+			return littleTree;
 
 		default:
 			JOptionPane.showMessageDialog(getParent(), "No such map");
@@ -123,7 +130,7 @@ public class Canvas extends JPanel{
 		int mW = map[0].length;	// map width
 		int mH = map.length; 	// map height
 		super.paintComponent(g);
-		//g.setColor(Color.magenta);
+		//g.setColor(Color.blue);
 		//g.fillRect(0, 0, getWidth(), getHeight());
 		
 		for (int i=0; i<mW; i++)
