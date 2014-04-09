@@ -35,10 +35,10 @@ enum Tile {
 }
 
 enum DefaultMap {
-	JOE, JOE_LARGE, BLADES_OF_DARKNESS, LITTLE_TREE;
+	JOE, JOE_LARGE, BLADES_OF_DARKNESS, LITTLE_TREE, BIG_GRASS;
 }
 
-public class Canvas extends JPanel{
+public class Canvas extends JPanel {
     private static final int tW = 32; // tile width
     private static final int tH = 32; // tile height
     private static final Tile joe[][] =
@@ -81,10 +81,28 @@ public class Canvas extends JPanel{
 	 {Tile.JOE37, Tile.JOE38, Tile.JOE39, Tile.JOE40, Tile.JOE41, Tile.JOE42}};
     private static final Tile littleTree[][] = 
         {{Tile.SMALLTREE01, Tile.SMALLTREE02},
-        {Tile.SMALLTREE03, Tile.SMALLTREE04},
-        {Tile.SMALLTREE05, Tile.SMALLTREE06}};
+         {Tile.SMALLTREE03, Tile.SMALLTREE04},
+         {Tile.SMALLTREE05, Tile.SMALLTREE06}};
+    private static final Tile bigGrass[][] =
+    	{
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	{Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4, Tile.GRASS3, Tile.GRASS4},
+    	{Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2, Tile.GRASS1, Tile.GRASS2},
+    	};
     		
-    private static Tile map[][] = null;
+    private Tile map[][] = null;
     
     private Image tileset;
     
@@ -95,6 +113,11 @@ public class Canvas extends JPanel{
     public Canvas(DefaultMap dm) {
     	this();
     	map = predeterminedMap(dm);
+    }
+    
+    public Canvas(Tile map[][]) {
+    	this();
+    	this.map = map;
     }
     
     public int getMapWidth() {
@@ -118,6 +141,9 @@ public class Canvas extends JPanel{
 
 		case LITTLE_TREE:
 			return littleTree;
+
+		case BIG_GRASS:
+			return bigGrass;
 
 		default:
 			JOptionPane.showMessageDialog(getParent(), "No such map");

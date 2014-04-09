@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class ElFrame extends JFrame implements Runnable {
@@ -46,13 +47,20 @@ public class ElFrame extends JFrame implements Runnable {
 		//FILL
 		map = new Map();
 		KeyListner listner = new KeyListner();
-		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(leMapSize);
 		addKeyListener(listner);
 		
-		add(map);
-		add(KeyListner.player);
+		add(layeredPane);
 		
-	
+		
+		//add(map);
+		KeyListner.player.setBounds(20, 20, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
+		KeyListner.player.setOpaque(false);
+		layeredPane.add(KeyListner.player, 10, 10);
+		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
+		background.setBounds(0, 0, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
+		layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
 		//FILL
 		
 		setSize(leMapSize);
