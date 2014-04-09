@@ -4,9 +4,14 @@ import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Collection;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class ElFrame extends JFrame implements Runnable {
 
@@ -17,8 +22,16 @@ public class ElFrame extends JFrame implements Runnable {
 	
 	private Dimension leMapSize;
 	
+
+	
+	public int tickCount;
+	public static int nrSprite;
+	
 	
 	public ElFrame(){
+		
+		tickCount = 0;
+		
 		setTitle("Blades of Darkness");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,21 +45,99 @@ public class ElFrame extends JFrame implements Runnable {
 		setLayout((new GridLayout(1,1)));
 		//FILL
 		map = new Map();
+		KeyListner listner = new KeyListner();
+		
+		addKeyListener(listner);
+		
 		add(map);
+		add(KeyListner.player);
 		
-		
+	
 		//FILL
 		
 		setSize(leMapSize);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
+		
+	}
+	public class BufferedImageLoader {
+		private BufferedImage image;
+		public BufferedImage loadImage(String path) throws IOException{
+			image = ImageIO.read(getClass().getResource(path));
+			return image;
+		}
 	}
 	@Override
 	public void run() {
 		
-
+		long lastTime = System.nanoTime();
+		double nsPerTick = 1000000000D/60D;
+		
+		int ticks = 0;
+		int frames = 0;
+		
+		long lastTimer = System.currentTimeMillis();
+		double delta = 0;
+		
+		while(running){
+			long now = System.nanoTime();
+			delta += (now - lastTime) / nsPerTick;
+			lastTime = now;
+			boolean shouldRender = true;
+			
+			while (delta >= 1){
+				ticks++;
+				tick();
+				delta -= 1;
+				shouldRender = true;
+			}
+			try {
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (shouldRender){
+			frames++;
+			
+			}
+			
+			if (System.currentTimeMillis() - lastTimer>=1000){
+				lastTimer +=1000;
+				//System.out.println("Ticks: " + ticks + " Frames: "+ frames);
+				frames = 0;
+				ticks = 0;
+				
+			}
+		}
 	}
+	
+	public void tick(){
+		tickCount++;
+		double x = KeyListner.player.getxPosition();
+		double y = KeyListner.player.getyPosition();
+		
+		if(KeyListner.upPressed){
+			KeyListner.walk(x,y-2);
+		}
+		if (KeyListner.downPressed){
+			KeyListner.walk(x,y+2);
+		}
+		if (KeyListner.leftPressed){
+			KeyListner.walk(x-2,y);
+		}
+		if (KeyListner.rightPressed){
+			KeyListner.walk(x+2,y);
+		}
+		
+		if (nrSprite <5)
+			nrSprite++;
+		else
+			nrSprite = 0;
+			
+	}
+
+		
 	
 	public synchronized void start(){
 		running = true;

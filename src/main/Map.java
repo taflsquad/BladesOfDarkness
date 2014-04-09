@@ -7,21 +7,26 @@ import javax.swing.JPanel;
 
 
 public class Map extends JPanel {
-	private int mapSizeX, mapSizeY, blockSize;
+	public static final int mapSizeX = 10;
+	public static final int mapSizeY = 10;
+	
+	private int blockSize;
 	private int mapArray[][];
 	private Player player;
 	private KeyListner listner;
 	
 	public Map() {
-		mapSizeX = 10;
-		mapSizeY = 10;
+		
 		blockSize = ElFrame.BLOCKSIZE;
 		mapArray = new int [mapSizeY][mapSizeX];
 		defineMap();
-		player = new Player(10,10);
-		listner = new KeyListner(player);
-		add(player);
-		addKeyListener(listner);
+		
+		try{
+		add(KeyListner.player);
+		}catch(NullPointerException e){
+			System.out.println("Feil med å legge til Spiller i Map-Classen, sjekk ut Maps constructor");
+		}
+		
 		
 		
 	}

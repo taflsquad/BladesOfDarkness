@@ -7,48 +7,95 @@ import java.awt.event.KeyListener;
 
 public class KeyListner implements KeyListener {
 	
-	private Player player;
+	public static Player player;
+	public boolean isValidMove;
 	
+	public static boolean upPressed;
+	public static boolean downPressed;
+	public static boolean leftPressed;
+	public static boolean rightPressed;
 	
-	public KeyListner(Player player) {
-		this.player = player;
+	public KeyListner() {
+		player = new Player(10.0,10.0);
+		isValidMove = false;
+		
+		upPressed = false;
+		downPressed = false;
+		leftPressed = false;
+		rightPressed = false;
 	}
 	
-	public void walk(int newX , int newY){
-		
+	public boolean moveIsBlocked(double x, double y){
+		if (x>=Map.mapSizeX+1 || y>=Map.mapSizeY+1 || x<=(-1) || y<=(-1)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static void walk(double newX , double newY){
 //		int oldX = player.getxPosition();
 //		int oldY = player.getyPosition();
 		
 		player.setyPosition(newY);
 		player.setxPosition(newX);
-		System.out.println("New movement. X: " + newX + " Y: " + newY);
-		
-		
-		
+		//System.out.println("New movement. X: " + newX + " Y: " + newY);
+		player.repaint();
 	}
 
 	@Override
 	public void keyPressed(KeyEvent k) {
-		int x = player.getxPosition();
-		int y = player.getyPosition();
+		double x = player.getxPosition();
+		double y = player.getyPosition();
+		
 		switch(k.getKeyCode()){
 		
+		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
-			walk(x,y-1);
-			
+			/*if(!moveIsBlocked(x,y-0.4)){
+				System.out.println("Up press");
+				walk(x,y-1);
+			}else{
+				System.out.println("Out of bounds");
+				walk(x,y-1);
+			}*/
+			upPressed = true;
 			break;
 			
 		case KeyEvent.VK_S:
-			walk(x,y+1);
-			
+		case KeyEvent.VK_DOWN:
+			/*if(!moveIsBlocked(x,y+0.4)){
+				System.out.println("Down press");
+				walk(x,y+1);
+			}else{
+				System.out.println("Out of bounds");
+				walk(x,y+1);
+			}*/
+			downPressed = true;
 			break;
 		
 		case KeyEvent.VK_A:
-			walk(x+1,y);
+		case KeyEvent.VK_LEFT:
+			/*if(!moveIsBlocked(x-0.4,y)){
+				System.out.println("Left press");
+				walk(x-1,y);
+			}else{
+				System.out.println("Out of bounds");
+				walk(x-1,y);
+			}*/
+			leftPressed = true;
 			break;
 			
 		case KeyEvent.VK_D:
-			walk(x-1,y);
+		case KeyEvent.VK_RIGHT:
+			/*if(!moveIsBlocked(x+0.4, y)){
+				System.out.println("Right press");
+				walk(x+1,y);
+			}else{
+				System.out.println("Out of bounds");
+				walk(x+1,y);
+			}*/
+			rightPressed = true;
 			break;
 			
 		default:
@@ -61,7 +108,33 @@ public class KeyListner implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+		switch(arg0.getKeyCode()){
 		
+		case KeyEvent.VK_W:
+		case KeyEvent.VK_UP:
+				upPressed=false;
+			break;
+			
+		case KeyEvent.VK_S:
+		case KeyEvent.VK_DOWN:
+				downPressed = false;
+			break;
+		
+		case KeyEvent.VK_A:
+		case KeyEvent.VK_LEFT:
+				leftPressed = false;
+			break;
+			
+		case KeyEvent.VK_D:
+		case KeyEvent.VK_RIGHT:
+				rightPressed = false;
+			break;
+			
+		default:
+			System.out.println("This key doesnt do a thing mmkay");
+		break;
+		
+		}
 
 	}
 
