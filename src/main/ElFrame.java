@@ -37,7 +37,8 @@ public class ElFrame extends JFrame implements Runnable {
 		setTitle("Blades of Darkness");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		leMapSize  = new Dimension(BLOCKSIZE*10+7,BLOCKSIZE*10+30);	
+		
+		//leMapSize  = new Dimension(BLOCKSIZE*10+7,BLOCKSIZE*10+30);	
 		initialize();
 		
 		
@@ -45,10 +46,15 @@ public class ElFrame extends JFrame implements Runnable {
 	
 	public void initialize(){
 		setLayout((new GridLayout(1,1)));
+		
 		//FILL
 		map = new Map();
 		KeyListner listner = new KeyListner();
 		JLayeredPane layeredPane = new JLayeredPane();
+		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
+		int mapWidth = background.getMapWidth() + 7;
+		int mapHeight = background.getMapHeight() + 30;
+		leMapSize = new Dimension(mapWidth,mapHeight);
 		layeredPane.setPreferredSize(leMapSize);
 		addKeyListener(listner);
 		
@@ -58,11 +64,11 @@ public class ElFrame extends JFrame implements Runnable {
 		speed = 0;
 		
 		//add(map);
-		KeyListner.player.setBounds(20, 20, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
+		KeyListner.player.setBounds(20, 20, mapWidth, mapHeight);
 		KeyListner.player.setOpaque(false);
 		layeredPane.add(KeyListner.player, 5, 10);
-		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
-		background.setBounds(0, 0, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
+		
+		background.setBounds(0, 0, mapWidth, mapHeight);
 		Canvas tree = new Canvas(DefaultMap.LITTLE_TREE);
 		tree.setBounds(100, 100, 64, 96);
 	
