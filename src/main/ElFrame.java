@@ -60,7 +60,7 @@ public class ElFrame extends JFrame implements Runnable {
 		//add(map);
 		KeyListner.player.setBounds(20, 20, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
 		KeyListner.player.setOpaque(false);
-		layeredPane.add(KeyListner.player, 10, 10);
+		layeredPane.add(KeyListner.player, 5, 10);
 		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
 		background.setBounds(0, 0, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
 		Canvas tree = new Canvas(DefaultMap.LITTLE_TREE);
