@@ -16,7 +16,7 @@ public class KeyListner implements KeyListener {
 	public static boolean rightPressed;
 	
 	public KeyListner() {
-		player = new Player(10.0,10.0);
+		player = new Player(32.0,32.0);
 		isValidMove = false;
 		
 		upPressed = false;
@@ -25,8 +25,8 @@ public class KeyListner implements KeyListener {
 		rightPressed = false;
 	}
 	
-	public boolean moveIsBlocked(double x, double y){
-		if (x>=Map.mapSizeX+1 || y>=Map.mapSizeY+1 || x<=(-1) || y<=(-1)){
+	public static boolean moveIsBlocked(double x, double y){
+		if (/*x>=Map.mapSizeX+1 || y>=Map.mapSizeY+1 ||*/ x<=(32) || y<=(32)){
 			return true;
 		}else{
 			return false;
@@ -52,14 +52,15 @@ public class KeyListner implements KeyListener {
 		
 		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
-			/*if(!moveIsBlocked(x,y-0.4)){
+			if(!moveIsBlocked(x,y-2.0)){
+				upPressed = true;
 				System.out.println("Up press");
-				walk(x,y-1);
+				
 			}else{
 				System.out.println("Out of bounds");
-				walk(x,y-1);
-			}*/
-			upPressed = true;
+				
+			}
+			//upPressed = true;
 			break;
 			
 		case KeyEvent.VK_S:
@@ -68,8 +69,7 @@ public class KeyListner implements KeyListener {
 				System.out.println("Down press");
 				walk(x,y+1);
 			}else{
-				System.out.println("Out of bounds");
-				walk(x,y+1);
+				
 			}*/
 			downPressed = true;
 			break;
@@ -113,6 +113,7 @@ public class KeyListner implements KeyListener {
 		case KeyEvent.VK_W:
 		case KeyEvent.VK_UP:
 				upPressed=false;
+				
 			break;
 			
 		case KeyEvent.VK_S:

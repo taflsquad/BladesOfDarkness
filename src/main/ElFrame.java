@@ -132,8 +132,11 @@ public class ElFrame extends JFrame implements Runnable {
 		double x = KeyListner.player.getxPosition();
 		double y = KeyListner.player.getyPosition();
 		
+		
 		if(KeyListner.upPressed){
-			KeyListner.walk(x,y-2);
+			if(!KeyListner.moveIsBlocked(x, y-2)){
+				KeyListner.walk(x,y-2);
+			}
 		}
 		if (KeyListner.downPressed){
 			KeyListner.walk(x,y+2);
@@ -160,6 +163,7 @@ public class ElFrame extends JFrame implements Runnable {
 			nrSprite = 0;
 			//System.out.println("reset");
 		}
+		
 	}
 
 		
