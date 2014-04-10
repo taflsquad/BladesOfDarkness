@@ -158,8 +158,11 @@ public class ElFrame extends JFrame implements Runnable {
 			}
 		}
 		if (KeyListner.rightPressed){
+			
 			if(!KeyListner.moveIsBlocked(x+2, y)){
 				KeyListner.walk(x+2,y);
+			}else{
+			//KeyListner.walk(x-1, y);
 			}
 		}
 		

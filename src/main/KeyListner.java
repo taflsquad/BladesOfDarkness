@@ -26,7 +26,7 @@ public class KeyListner implements KeyListener {
 	}
 	
 	public static boolean moveIsBlocked(double x, double y){
-		if (x>=ElFrame.mapWidth - 96|| y>=ElFrame.mapHeight - 155|| x<=(25) || y<=(25)){
+		if (x>=ElFrame.mapWidth - 93|| y>=ElFrame.mapHeight - 155|| x<=(25) || y<=(25)){
 			return true;
 		}else{
 			return false;
@@ -34,9 +34,7 @@ public class KeyListner implements KeyListener {
 	}
 	
 	public static void walk(double newX , double newY){
-//		int oldX = player.getxPosition();
-//		int oldY = player.getyPosition();
-		
+
 		player.setyPosition(newY);
 		player.setxPosition(newX);
 		//System.out.println("New movement. X: " + newX + " Y: " + newY);
@@ -60,7 +58,7 @@ public class KeyListner implements KeyListener {
 				System.out.println("Out of bounds");
 				
 			}
-			//upPressed = true;
+			
 			break;
 			
 		case KeyEvent.VK_S:
@@ -96,8 +94,9 @@ public class KeyListner implements KeyListener {
 				
 			}else{
 				System.out.println("Out of bounds");
-				
+				walk(x-3,y);
 			}
+			
 		
 			break;
 			
