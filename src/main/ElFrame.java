@@ -26,6 +26,7 @@ public class ElFrame extends JFrame implements Runnable {
 
 	
 	public int tickCount;
+	public static int speed;
 	public static int nrSprite;
 	
 	
@@ -53,6 +54,8 @@ public class ElFrame extends JFrame implements Runnable {
 		
 		add(layeredPane);
 		
+		nrSprite = 0;
+		speed = 0;
 		
 		//add(map);
 		KeyListner.player.setBounds(20, 20, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
@@ -138,11 +141,21 @@ public class ElFrame extends JFrame implements Runnable {
 			KeyListner.walk(x+2,y);
 		}
 		
-		if (nrSprite <5)
+		speed++;
+		int rate = 4; //smaller == faster
+		if (speed > rate)
+			speed = 0;
+		
+		
+		if (speed/rate == 1) {
 			nrSprite++;
-		else
+			//System.out.println("nrSprite: " + nrSprite);
+			KeyListner.player.repaint();
+		}
+		if (nrSprite > 5){
 			nrSprite = 0;
-			
+			//System.out.println("reset");
+		}
 	}
 
 		
