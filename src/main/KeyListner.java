@@ -26,7 +26,7 @@ public class KeyListner implements KeyListener {
 	}
 	
 	public static boolean moveIsBlocked(double x, double y){
-		if (/*x>=Map.mapSizeX+1 || y>=Map.mapSizeY+1 ||*/ x<=(32) || y<=(32)){
+		if (x>=ElFrame.mapWidth - 96|| y>=ElFrame.mapHeight - 155|| x<=(25) || y<=(25)){
 			return true;
 		}else{
 			return false;
@@ -65,37 +65,40 @@ public class KeyListner implements KeyListener {
 			
 		case KeyEvent.VK_S:
 		case KeyEvent.VK_DOWN:
-			/*if(!moveIsBlocked(x,y+0.4)){
+			if(!moveIsBlocked(x,y+2)){
+				downPressed = true;
 				System.out.println("Down press");
-				walk(x,y+1);
-			}else{
 				
-			}*/
+			}else{
+				System.out.println("Out of bounds");
+			}
 			downPressed = true;
 			break;
 		
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_LEFT:
-			/*if(!moveIsBlocked(x-0.4,y)){
+			if(!moveIsBlocked(x+2,y)){
+				leftPressed = true;
 				System.out.println("Left press");
-				walk(x-1,y);
+				
 			}else{
 				System.out.println("Out of bounds");
 				walk(x-1,y);
-			}*/
-			leftPressed = true;
+			}
+			
 			break;
 			
 		case KeyEvent.VK_D:
 		case KeyEvent.VK_RIGHT:
-			/*if(!moveIsBlocked(x+0.4, y)){
+			if(!moveIsBlocked(x+2, y)){
+				rightPressed = true;
 				System.out.println("Right press");
-				walk(x+1,y);
+				
 			}else{
 				System.out.println("Out of bounds");
-				walk(x+1,y);
-			}*/
-			rightPressed = true;
+				
+			}
+		
 			break;
 			
 		default:

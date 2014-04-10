@@ -29,6 +29,9 @@ public class ElFrame extends JFrame implements Runnable {
 	public static int speed;
 	public static int nrSprite;
 	
+	public static int mapWidth, mapHeight;
+	
+	
 	
 	public ElFrame(){
 		
@@ -52,8 +55,8 @@ public class ElFrame extends JFrame implements Runnable {
 		KeyListner listner = new KeyListner();
 		JLayeredPane layeredPane = new JLayeredPane();
 		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
-		int mapWidth = background.getMapWidth() + 7;
-		int mapHeight = background.getMapHeight() + 30;
+		mapWidth = background.getMapWidth() + 7;
+		mapHeight = background.getMapHeight() + 30;
 		leMapSize = new Dimension(mapWidth,mapHeight);
 		layeredPane.setPreferredSize(leMapSize);
 		addKeyListener(listner);
@@ -145,13 +148,19 @@ public class ElFrame extends JFrame implements Runnable {
 			}
 		}
 		if (KeyListner.downPressed){
-			KeyListner.walk(x,y+2);
+			if(!KeyListner.moveIsBlocked(x, y+2)){
+				KeyListner.walk(x,y+2);
+			}
 		}
 		if (KeyListner.leftPressed){
-			KeyListner.walk(x-2,y);
+			if(!KeyListner.moveIsBlocked(x-2, y)){
+				KeyListner.walk(x-2,y);
+			}
 		}
 		if (KeyListner.rightPressed){
-			KeyListner.walk(x+2,y);
+			if(!KeyListner.moveIsBlocked(x+2, y)){
+				KeyListner.walk(x+2,y);
+			}
 		}
 		
 		speed++;
