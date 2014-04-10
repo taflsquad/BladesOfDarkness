@@ -108,6 +108,7 @@ public class Canvas extends JPanel {
     
     private Canvas() {
     	tileset = Toolkit.getDefaultToolkit().getImage("res/tiles.png");
+    	setOpaque(false);
     }
     
     public Canvas(DefaultMap dm) {

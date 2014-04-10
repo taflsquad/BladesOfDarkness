@@ -50,28 +50,23 @@ public class Player extends JPanel{
 		spriteX = 240+ElFrame.nrSprite*spriteWidth;
 		g.drawImage(sprite, x, y, x+spriteWidth, y+spriteHeight,
 				spriteX, spriteY, spriteX+spriteWidth, spriteY+spriteHeight, this);
-		} else 
+		}
 		if (KeyListner.leftPressed){
 			spriteY = 30;
 			spriteX = 240+ElFrame.nrSprite*spriteWidth;
 			g.drawImage(sprite, x, y, x+spriteWidth, y+spriteHeight,
 					spriteX, spriteY, spriteX+spriteWidth, spriteY+spriteHeight, this);
-		} else
+		}
 		if (KeyListner.downPressed){
 			spriteY = 30;
 			spriteX = 0+ElFrame.nrSprite*spriteWidth;
 			g.drawImage(sprite, x, y, x+spriteWidth, y+spriteHeight, 
 					spriteX, spriteY, spriteX+spriteWidth, spriteY+spriteHeight, this);
-		} else
+		}
 		if (KeyListner.upPressed){
 			spriteY = 120;
 			spriteX = 0+ElFrame.nrSprite*spriteWidth;
 			g.drawImage(sprite, x, y, x+spriteWidth, y+spriteHeight, 
-					spriteX, spriteY, spriteX+spriteWidth, spriteY+spriteHeight, this);
-		} else {
-			spriteY = 2;
-			spriteX = 32;
-			g.drawImage(sprite, x, y, x+spriteWidth, y+spriteHeight,
 					spriteX, spriteY, spriteX+spriteWidth, spriteY+spriteHeight, this);
 		}
 	}

@@ -63,6 +63,10 @@ public class ElFrame extends JFrame implements Runnable {
 		layeredPane.add(KeyListner.player, 10, 10);
 		Canvas background = new Canvas(DefaultMap.BLADES_OF_DARKNESS);
 		background.setBounds(0, 0, BLOCKSIZE*10+7, BLOCKSIZE*10+30);
+		Canvas tree = new Canvas(DefaultMap.LITTLE_TREE);
+		tree.setBounds(100, 100, 64, 96);
+	
+		layeredPane.add(tree,10,100);
 		layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
 		//FILL
 		
@@ -150,7 +154,7 @@ public class ElFrame extends JFrame implements Runnable {
 		if (speed/rate == 1) {
 			nrSprite++;
 			//System.out.println("nrSprite: " + nrSprite);
-			KeyListner.player.repaint();
+			
 		}
 		if (nrSprite > 5){
 			nrSprite = 0;
